@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.sku.dao.MatchmakeMapper">
+
+	<insert id="addMatchmake" parameterType="Matchmake" keyProperty="m_Num">
+		insert into matchmake (Matchmake) values (#{Matchmake})
+		<selectKey keyProperty="m_Num" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+</mapper>

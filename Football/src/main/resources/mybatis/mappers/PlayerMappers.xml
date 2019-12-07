@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.sku.dao.PlayerMapper">
+	
+    <select id="getPlayers" resultType="player">
+        SELECT id, todo, done FROM todo order by id desc
+    </select>
+
+    <select id="getPlayer" parameterType="java.lang.Integer" resultType="player">
+        SELECT id, todo, done FROM todo where id = #{id}
+    </select>
+
+	<insert id="addPlayer" parameterType="player" keyProperty="id">
+		insert into todo (todo) values (#{todo})
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<update id="updatePlayer" parameterType="int">
+		update todo set done = 1 where id = #{id}
+	</update>
+	<delete id="deletePlayer" parameterType="int">
+		delete from todo where id = #{id}
+	</delete>
+</mapper>
